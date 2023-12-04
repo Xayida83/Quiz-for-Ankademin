@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  font-family: "Times New Roman", Times, serif;
+  background-color: rgb(254, 231, 251);
+  color: rgb(4, 9, 33);
+  overflow: hidden;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body.dark-mode {
+  background-color: rgb(4, 26, 116);
+  color: rgb(232, 227, 227);
+}
+
+.friendsPic {
+  width: 80%;
+}/*# sourceMappingURL=style.css.map */

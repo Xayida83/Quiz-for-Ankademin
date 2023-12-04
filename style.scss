@@ -1,0 +1,27 @@
+@import "./Partials/variables";
+@import "./Partials/mixin";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include flex(column, center, center); 
+  font-family: $fontFamily;
+   background-color: $backgroundColor;
+   color: $textColor;
+   overflow: hidden;
+   margin: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+
+  &.dark-mode {
+    background-color: $darkBackgroundColor;
+    color: $darkTextColor;
+  } 
+}
+.friendsPic{
+  width: 80%;
+}
