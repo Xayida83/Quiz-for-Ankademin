@@ -85,8 +85,6 @@ let questions =[
 
 // Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
 
-
-
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
 //If the class does not exist add dark-mode.
@@ -97,38 +95,48 @@ toggleModeBtn.addEventListener("click", () => {
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
 let currentQuestionIndex = 0;
-//get questions and options and show on schreen
-// displayQuestion();
+// let answerText = "";
 
+//Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   questionsContainer.innerHTML = "";
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
-    displayQuestion();
+    displayQuestion(currentQuestionIndex);
   } else {
     alert("End of quiz");
   }
 });
 
-let displayQuestion = () => {
+//To show the questions and it´s answer options.
+let displayQuestion = (index) => {
   let card = document.createElement("div");
   card.classList.add("questionCard");
 
   let questionText = document.createElement("h2");
-  questionText.className = 'question';
-  questionText.innerText = `${questions[currentQuestionIndex].question}`;
+  questionText.className = "question";
+  questionText.innerText = `${questions[index].question}`;
 
   card.appendChild(questionText);
 
-  questions[currentQuestionIndex].answers.forEach(answer => {
+  questions[index].answers.forEach(answer => {
     let options = document.createElement("div");
-    options.className = 'answersOption';
+    options.className = "answersOption";
 
     let option = document.createElement("input");
     option.type = "checkbox";
     option.value = answer.text;
     option.name = "answers";
 
+    // Lägg till en "change" eventlistener för varje checkbox och spara svaret
+    option.addEventListener("change", () => {
+      let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
+      checkedBox.forEach(checkbox => {
+        let answerText = checkbox.value;
+        updateAnswerClass(currentQuestionIndex, answerText);
+      });
+    });
+  
     let label = document.createElement("label");
     label.innerText = answer.text;
     label.setAttribute('for', answer.text);
@@ -139,5 +147,18 @@ let displayQuestion = () => {
   });
 
   questionsContainer.appendChild(card);
+
 }
-displayQuestion();
+displayQuestion(currentQuestionIndex);
+
+// En funktion för att uppdatera klassen baserat på om svaret är rätt eller fel
+function updateAnswerClass(questionIndex, selectedAnswer) {
+  let currentQuestion = questions[questionIndex];
+  let selectedAnswerObject = currentQuestion.answers.find(answer => answer.text === selectedAnswer);
+
+  if (selectedAnswerObject && selectedAnswerObject.correct) {
+    console.log("correct")
+  } else {
+    console.log("Incorrect")
+  }
+}
