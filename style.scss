@@ -6,8 +6,8 @@
 }
 
 body {
-  @include flex(column, center, center); 
-  font-family: $fontFamily;
+   @include flex(column, center, center); 
+   font-family: $fontFamily;
    background-color: $backgroundColor;
    color: $textColor;
    overflow: hidden;
@@ -15,11 +15,43 @@ body {
    width: 100vw;
    height: 100vh;
 
-  &.dark-mode {
-    background-color: $darkBackgroundColor;
-    color: $darkTextColor;
-  } 
+    &.dark-mode {
+      background-color: $darkBackgroundColor;
+      color: $darkTextColor;
+    } 
+    .friendsPic{
+    width: 80%;
+    } 
+    .questionsContainer{
+      width: 80%;
+      @include flex(column, center, center);
+      .questionCard{
+        @include flex(row, center, center);
+        flex-flow: row wrap;
+        .question {
+        text-align: center;
+      }
+      .answersOption{
+        width: 47%;
+        border: 1px solid #673AB7 ;
+        padding: 5px;      
+        text-align: center;
+
+        input[type="checkbox"] {
+          display: none;
+        }
+        label {
+          font-size: 25px;
+        }
+      }
+    }    
+  }
+  .nextBtn {
+    @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
+  }
+  #toggleModeBtn {
+    @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
+  }
 }
-.friendsPic{
-  width: 80%;
-}
+
+

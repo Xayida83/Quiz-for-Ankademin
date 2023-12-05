@@ -5,3 +5,14 @@
   flex-direction: $direction;
   gap: 1em;
 }
+@mixin button($background, $text, $shadow, $hover) {
+  padding: 10px 20px;
+  border: none;
+  background-color: $background;
+  color: $text;
+  box-shadow: 0px 0px 5px $shadow;
+  font-size: 20px;
+  &:hover {
+    background-color: $hover;
+  }
+}
