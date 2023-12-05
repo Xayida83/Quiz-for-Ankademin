@@ -105,7 +105,7 @@ nextQuestionBtn.addEventListener("click", () => {
     displayQuestion(currentQuestionIndex);
   } else {
     alert("End of quiz");
-  }
+  };
 });
 
 //To show the questions and it´s answer options.
@@ -127,6 +127,7 @@ let displayQuestion = (index) => {
     option.type = "checkbox";
     option.value = answer.text;
     option.name = "answers";
+    option.id = answer.text;
 
     // Lägg till en "change" eventlistener för varje checkbox och spara svaret
     option.addEventListener("change", () => {
@@ -156,9 +157,19 @@ function updateAnswerClass(questionIndex, selectedAnswer) {
   let currentQuestion = questions[questionIndex];
   let selectedAnswerObject = currentQuestion.answers.find(answer => answer.text === selectedAnswer);
 
-  if (selectedAnswerObject && selectedAnswerObject.correct) {
-    console.log("correct")
-  } else {
-    console.log("Incorrect")
-  }
-}
+  if (selectedAnswerObject) {
+    let optionsElements = document.querySelectorAll('.answersOption');
+    
+    optionsElements.forEach(option => {
+      if (option.querySelector('label').innerText === selectedAnswer) {
+        if (selectedAnswerObject.correct) {
+          option.classList.add("correct");
+          console.log("Correct");
+        } else {
+          option.classList.add("wrong");
+          console.log("Incorrect");
+        }
+      } 
+    });
+  };
+};
