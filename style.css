@@ -54,6 +54,9 @@ body .questionsContainer .questionCard .answersOption input[type=checkbox] {
 body .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
 }
+body #resultContainer {
+  display: none;
+}
 body .nextBtn {
   padding: 10px 20px;
   border: none;

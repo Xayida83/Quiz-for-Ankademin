@@ -46,6 +46,9 @@ body {
       }
     }    
   }
+  #resultContainer{
+    display: none;
+  }
   .nextBtn {
     @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
   }

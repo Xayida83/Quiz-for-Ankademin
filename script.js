@@ -85,6 +85,10 @@ let questions =[
 
 // Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
 
+
+let userCorrectResponses = [];
+let userWrongResponses = [];
+
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
 //If the class does not exist add dark-mode.
@@ -95,16 +99,14 @@ toggleModeBtn.addEventListener("click", () => {
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
 let currentQuestionIndex = 0;
-// let answerText = "";
-
 //Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   questionsContainer.innerHTML = "";
   currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
+  if (currentQuestionIndex + 1 < questions.length) {
     displayQuestion(currentQuestionIndex);
   } else {
-    alert("End of quiz");
+    showResult();
   };
 });
 
@@ -152,9 +154,11 @@ let displayQuestion = (index) => {
 }
 displayQuestion(currentQuestionIndex);
 
-// En funktion för att uppdatera klassen baserat på om svaret är rätt eller fel
-function updateAnswerClass(questionIndex, selectedAnswer) {
+// A function to update the class based on whether the answer is right or wrong
+let updateAnswerClass = (questionIndex, selectedAnswer) => {
+  //Get current question from array 'questions'
   let currentQuestion = questions[questionIndex];
+  //Use the find method to search for the selected answer in the current question's answer options
   let selectedAnswerObject = currentQuestion.answers.find(answer => answer.text === selectedAnswer);
 
   if (selectedAnswerObject) {
@@ -165,11 +169,35 @@ function updateAnswerClass(questionIndex, selectedAnswer) {
         if (selectedAnswerObject.correct) {
           option.classList.add("correct");
           console.log("Correct");
+          userCorrectResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
         } else {
           option.classList.add("wrong");
           console.log("Incorrect");
+          userWrongResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
         }
       } 
     });
   };
 };
+
+let maxScores = 22;
+
+//A div to display the result
+let showResult = () => {
+  questionsContainer.innerHTML = "";
+  let picture = document.querySelector(".friendsPic");
+  picture.style.display = "none";
+
+  let percentageCorrect = (userCorrectResponses.length / maxScores) * 100;
+
+  // Create a div to display the result
+  let resultDiv = document.createElement("div");
+  resultDiv.innerHTML = `<h2>Your Result</h2>
+                        <p>Correct Answers: ${userCorrectResponses.length}</p>
+                        <p>Incorrect Answers: ${userWrongResponses.length}</p>
+                        <p>Percentage Correct: ${(percentageCorrect)}%</p>`;
+
+  questionsContainer.appendChild(resultDiv);
+}
+
+//A div to displey all the answers that was wrong and right
