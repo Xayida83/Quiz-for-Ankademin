@@ -83,11 +83,19 @@ let questions =[
   }
 ];
 
-// Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
+/** Svar på Chandler frågan
+ *  Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
+ 
+*/
 
 
 let userCorrectResponses = [];
 let userWrongResponses = [];
+
+let questionsContainer = document.querySelector(".questionsContainer");
+let nextQuestionBtn = document.querySelector(".nextBtn");
+
+let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
@@ -96,22 +104,19 @@ toggleModeBtn.addEventListener("click", () => {
   body.classList.toggle('dark-mode'); 
 });
 
-let questionsContainer = document.querySelector(".questionsContainer");
-let nextQuestionBtn = document.querySelector(".nextBtn");
-let currentQuestionIndex = 0;
 //Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   questionsContainer.innerHTML = "";
   currentQuestionIndex++;
-  if (currentQuestionIndex + 1 < questions.length) {
-    displayQuestion(currentQuestionIndex);
-  } else {
-    showResult();
-  };
+  
+ //If and else to see when questions are over
+  currentQuestionIndex < questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers());
+
 });
 
 //To show the questions and it´s answer options.
 let displayQuestion = (index) => {
+  
   let card = document.createElement("div");
   card.classList.add("questionCard");
 
@@ -133,8 +138,8 @@ let displayQuestion = (index) => {
 
     // Lägg till en "change" eventlistener för varje checkbox och spara svaret
     option.addEventListener("change", () => {
-      let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
-      checkedBox.forEach(checkbox => {
+        let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
+        checkedBox.forEach(checkbox => {
         let answerText = checkbox.value;
         updateAnswerClass(currentQuestionIndex, answerText);
       });
@@ -150,7 +155,6 @@ let displayQuestion = (index) => {
   });
 
   questionsContainer.appendChild(card);
-
 }
 displayQuestion(currentQuestionIndex);
 
@@ -180,7 +184,7 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
   };
 };
 
-let maxScores = 22;
+let maxScores = 19;
 
 //A div to display the result
 let showResult = () => {
@@ -188,16 +192,35 @@ let showResult = () => {
   let picture = document.querySelector(".friendsPic");
   picture.style.display = "none";
 
-  let percentageCorrect = (userCorrectResponses.length / maxScores) * 100;
+  let percentageCorrect = Math.floor((userCorrectResponses.length / maxScores) * 100);
 
-  // Create a div to display the result
+  // Determine the result text and color based on the percentage
+  let resultText = "";
+  let resultColor = "";
+
+  if (percentageCorrect < 50) {
+    resultText = "Failed";
+    resultColor = "#f32828";
+  } else if (percentageCorrect >= 50 && percentageCorrect <= 75) {
+    resultText = "Good";
+    resultColor = "#f1a00c";
+  } else {
+    resultText = "Well done, really!";
+    resultColor = "#08a308";
+  }
+
+  //The div to display the results
   let resultDiv = document.createElement("div");
   resultDiv.innerHTML = `<h2>Your Result</h2>
                         <p>Correct Answers: ${userCorrectResponses.length}</p>
                         <p>Incorrect Answers: ${userWrongResponses.length}</p>
-                        <p>Percentage Correct: ${(percentageCorrect)}%</p>`;
+                        <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}% - ${resultText}</p>`;
 
   questionsContainer.appendChild(resultDiv);
-}
+};
 
-//A div to displey all the answers that was wrong and right
+
+//*TODO: A div to displey all the answers that was wrong and right
+let showTheAnswers = () => {
+
+}

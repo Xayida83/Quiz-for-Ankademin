@@ -54,6 +54,14 @@ body .questionsContainer .questionCard .answersOption input[type=checkbox] {
 body .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
 }
+body .questionsContainer .questionCard .correct {
+  background-color: #08a308;
+  border: black solid 2px;
+}
+body .questionsContainer .questionCard .wrong {
+  background-color: #f32828;
+  border: black solid 2px;
+}
 body #resultContainer {
   display: none;
 }

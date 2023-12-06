@@ -44,6 +44,14 @@ body {
           font-size: 25px;
         }
       }
+      .correct{
+        background-color: #08a308;
+        border: black solid 2px;
+      }
+      .wrong {
+        background-color: #f32828;
+        border: black solid 2px;
+      }
     }    
   }
   #resultContainer{
@@ -57,4 +65,4 @@ body {
   }
 }
 
-
+//*TODO: styla classerna correct och wrong
