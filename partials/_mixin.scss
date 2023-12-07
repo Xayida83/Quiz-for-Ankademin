@@ -3,7 +3,7 @@
   justify-content: $justify;
   align-items: $align;
   flex-direction: $direction;
-  gap: 1em;
+  gap: 5px;
 }
 @mixin button($background, $text, $shadow, $hover) {
   padding: 10px 20px;

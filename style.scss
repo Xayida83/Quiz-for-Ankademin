@@ -6,62 +6,98 @@
 }
 
 body {
+  margin: 0;
+  background: $backgroundColor;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: $textColor; 
+  font-family: $fontFamily;
+  &.dark-mode {
+    background-color: $darkBackgroundColor;
+    color: $darkTextColor;
+  }
+  .quizContainer {  
    @include flex(column, center, center); 
-   font-family: $fontFamily;
-   background-color: $backgroundColor;
-   color: $textColor;
-   overflow: hidden;
-   margin: 0;
    width: 100vw;
-   height: 100vh;
-
-    &.dark-mode {
-      background-color: $darkBackgroundColor;
-      color: $darkTextColor;
-    } 
+    h2 {
+      font-size: 20px;
+      margin: 5px 0;
+      }
+     
     .friendsPic{
     width: 80%;
+      @media #{$desktop}{
+        width: 30%;
+        // &.hide {
+        //    display: block;
+        // }
+       
+      }
     } 
     .questionsContainer{
       width: 80%;
       @include flex(column, center, center);
+      @media #{$desktop} {
+        width: 25%;
+      }
       .questionCard{
         @include flex(row, center, center);
-        flex-flow: row wrap;
+        flex-wrap: wrap;
         .question {
         text-align: center;
-      }
-      .answersOption{
-        width: 47%;
-        border: 1px solid #673AB7 ;
-        padding: 5px;      
-        text-align: center;
+        }
+        .answersOption{
+          width: 47%;
+          border: 1px solid #673AB7 ;
+          padding: 5px;      
+          text-align: center;
 
-        input[type="checkbox"] {
-          display: none;
+          input[type="checkbox"] {
+            display: none;
+          }
+          label {
+            font-size: 25px;
+          }
         }
-        label {
-          font-size: 25px;
+        .correct{
+          background-color: #08a308;
+          border: black solid 2px;
+        }
+        .wrong {
+          background-color: #f32828;
+          border: black solid 2px;
+        }            
+      }    
+      .userResult {
+        @include flex(column, center, center);
+        gap: 0;
+        p {
+          margin: 0;
+          font-size: 17px;
         }
       }
-      .correct{
-        background-color: #08a308;
-        border: black solid 2px;
+      .response {
+        margin: 12px 0;
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+        p {
+          margin: 5px;
+          font-size: 15px;
+        }
       }
-      .wrong {
-        background-color: #f32828;
-        border: black solid 2px;
-      }
-    }    
-  }
-  #resultContainer{
-    display: none;
-  }
-  .nextBtn {
-    @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
-  }
-  #toggleModeBtn {
-    @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
+    }
+  
+    .nextBtn {
+      @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
+    }
+    #toggleModeBtn {
+      @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
+      padding: 5px 10px;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .hide{
+      display: none;
+    }
   }
 }
 

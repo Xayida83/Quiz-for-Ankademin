@@ -1,7 +1,7 @@
 $fontFamily: 'Times New Roman', Times, serif;
 
 //default
-$backgroundColor: rgb(254 231 251);;
+$backgroundColor: rgb(254 231 251);
 $textColor: rgb(4, 9, 33);
 
 //darkmode
@@ -19,3 +19,6 @@ $modeButtonColor: rgb(66, 13, 13);
 $modeButtonHover: rgb(165, 56, 56);
 $modeButtonText: rgb(232, 227, 227);
 $modeButtonShadow: rgb(10, 0, 0);
+
+//Media query
+$desktop: "screen and (min-width: 750px)";

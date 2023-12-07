@@ -3,69 +3,102 @@
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1em;
-  font-family: "Times New Roman", Times, serif;
-  background-color: rgb(254, 231, 251);
-  color: rgb(4, 9, 33);
-  overflow: hidden;
   margin: 0;
-  width: 100vw;
+  background: rgb(254, 231, 251);
+  background-repeat: no-repeat;
   height: 100vh;
+  color: rgb(4, 9, 33);
+  font-family: "Times New Roman", Times, serif;
 }
 body.dark-mode {
   background-color: rgb(4, 26, 116);
   color: rgb(232, 227, 227);
 }
-body .friendsPic {
+body .quizContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 100vw;
+}
+body .quizContainer h2 {
+  font-size: 20px;
+  margin: 5px 0;
+}
+body .quizContainer .friendsPic {
   width: 80%;
 }
-body .questionsContainer {
+@media screen and (min-width: 750px) {
+  body .quizContainer .friendsPic {
+    width: 30%;
+  }
+}
+body .quizContainer .questionsContainer {
   width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1em;
+  gap: 5px;
 }
-body .questionsContainer .questionCard {
+@media screen and (min-width: 750px) {
+  body .quizContainer .questionsContainer {
+    width: 25%;
+  }
+}
+body .quizContainer .questionsContainer .questionCard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 1em;
-  flex-flow: row wrap;
+  gap: 5px;
+  flex-wrap: wrap;
 }
-body .questionsContainer .questionCard .question {
+body .quizContainer .questionsContainer .questionCard .question {
   text-align: center;
 }
-body .questionsContainer .questionCard .answersOption {
+body .quizContainer .questionsContainer .questionCard .answersOption {
   width: 47%;
   border: 1px solid #673AB7;
   padding: 5px;
   text-align: center;
 }
-body .questionsContainer .questionCard .answersOption input[type=checkbox] {
+body .quizContainer .questionsContainer .questionCard .answersOption input[type=checkbox] {
   display: none;
 }
-body .questionsContainer .questionCard .answersOption label {
+body .quizContainer .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
 }
-body .questionsContainer .questionCard .correct {
+body .quizContainer .questionsContainer .questionCard .correct {
   background-color: #08a308;
   border: black solid 2px;
 }
-body .questionsContainer .questionCard .wrong {
+body .quizContainer .questionsContainer .questionCard .wrong {
   background-color: #f32828;
   border: black solid 2px;
 }
-body #resultContainer {
-  display: none;
+body .quizContainer .questionsContainer .userResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  gap: 0;
 }
-body .nextBtn {
+body .quizContainer .questionsContainer .userResult p {
+  margin: 0;
+  font-size: 17px;
+}
+body .quizContainer .questionsContainer .response {
+  margin: 12px 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+body .quizContainer .questionsContainer .response p {
+  margin: 5px;
+  font-size: 15px;
+}
+body .quizContainer .nextBtn {
   padding: 10px 20px;
   border: none;
   background-color: #D81B60;
@@ -73,17 +106,23 @@ body .nextBtn {
   box-shadow: 0px 0px 5px #3c0519;
   font-size: 20px;
 }
-body .nextBtn:hover {
+body .quizContainer .nextBtn:hover {
   background-color: #f189af;
 }
-body #toggleModeBtn {
+body .quizContainer #toggleModeBtn {
   padding: 10px 20px;
   border: none;
   background-color: rgb(66, 13, 13);
   color: rgb(232, 227, 227);
   box-shadow: 0px 0px 5px rgb(10, 0, 0);
   font-size: 20px;
+  padding: 5px 10px;
+  font-size: 15px;
+  margin-bottom: 10px;
 }
-body #toggleModeBtn:hover {
+body .quizContainer #toggleModeBtn:hover {
   background-color: rgb(165, 56, 56);
+}
+body .quizContainer .hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

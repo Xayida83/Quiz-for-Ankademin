@@ -16,7 +16,7 @@ let questions =[
     ]
   },
   {
-    question: "Select the characters who have been married during the series. (Choose 2 or 3)",
+    question: "Select the characters who have been married during the series. \n(Choose 2 or 3)",
     answers: [
       {text: "Ross Geller", correct: true},
       {text: "Monica Geller", correct: true},
@@ -41,7 +41,7 @@ let questions =[
     ]
   },
   {
-    question: "Select the seasons in which Monica and Chandler are a couple. (Choose 2 or 3)",
+    question: "Select the seasons in which Monica and Chandler are a couple. \n(Choose 2 or 3)",
     answers: [
       {text: "Season 4", correct: true},
       {text: "Season 5", correct: true},
@@ -73,7 +73,7 @@ let questions =[
     ]
   },
   {
-    question: "Select the characters who have worked at Central Perk. (Choose 2 or 3)",
+    question: "Select the characters who have worked at Central Perk. \n(Choose 2 or 3)",
     answers: [
       {text: "Ross Geller", correct: false},
       {text: "Pheobe Buffay", correct: false},
@@ -110,21 +110,20 @@ nextQuestionBtn.addEventListener("click", () => {
   currentQuestionIndex++;
   
  //If and else to see when questions are over
-  currentQuestionIndex < questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers());
-
+  currentQuestionIndex < questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers(), nextQuestionBtn.classList.add("hide"));
 });
 
 //To show the questions and it´s answer options.
 let displayQuestion = (index) => {
   
   let card = document.createElement("div");
-  card.classList.add("questionCard");
+  card.className="questionCard";
 
   let questionText = document.createElement("h2");
   questionText.className = "question";
   questionText.innerText = `${questions[index].question}`;
 
-  card.appendChild(questionText);
+  card.append(questionText);
 
   questions[index].answers.forEach(answer => {
     let options = document.createElement("div");
@@ -158,7 +157,7 @@ let displayQuestion = (index) => {
 }
 displayQuestion(currentQuestionIndex);
 
-// A function to update the class based on whether the answer is right or wrong
+// Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
   //Get current question from array 'questions'
   let currentQuestion = questions[questionIndex];
@@ -178,6 +177,7 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
           option.classList.add("wrong");
           console.log("Incorrect");
           userWrongResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
+          disableCheckboxes();
         }
       } 
     });
@@ -190,7 +190,7 @@ let maxScores = 19;
 let showResult = () => {
   questionsContainer.innerHTML = "";
   let picture = document.querySelector(".friendsPic");
-  picture.style.display = "none";
+  picture.classList.add("hide");
 
   let percentageCorrect = Math.floor((userCorrectResponses.length / maxScores) * 100);
 
@@ -205,22 +205,51 @@ let showResult = () => {
     resultText = "Good";
     resultColor = "#f1a00c";
   } else {
-    resultText = "Well done, really!";
+    resultText = "Well done!";
     resultColor = "#08a308";
   }
 
   //The div to display the results
-  let resultDiv = document.createElement("div");
-  resultDiv.innerHTML = `<h2>Your Result</h2>
+  let resultDiv = document.createElement('div');
+  resultDiv.className = "userResult";
+  resultDiv.innerHTML = `<h2 style="color: ${resultColor};">Your Result</h2>
                         <p>Correct Answers: ${userCorrectResponses.length}</p>
                         <p>Incorrect Answers: ${userWrongResponses.length}</p>
                         <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}% - ${resultText}</p>`;
 
-  questionsContainer.appendChild(resultDiv);
+  questionsContainer.append(resultDiv);
 };
 
-
-//*TODO: A div to displey all the answers that was wrong and right
 let showTheAnswers = () => {
+  let correctAnswersDiv = document.createElement('div');
+  correctAnswersDiv.innerHTML = `<h2>Your correct answers</h2>`;
 
+  userCorrectResponses.forEach((response) => {
+    let userAnswerDiv = document.createElement('div');
+    userAnswerDiv.className = "response";
+    userAnswerDiv.innerHTML = `<p>Q: ${response.question}</p>
+                              <p>A: ${response.selectedAnswer}</p>`;
+    correctAnswersDiv.append(userAnswerDiv);
+  });
+  let wrongAnswersDiv = document.createElement('div');
+  wrongAnswersDiv.innerHTML = `<h2>Your wrong answers</h2>`;
+
+  userWrongResponses.forEach((response) => {
+    let userAnswerDiv = document.createElement('div');
+    userAnswerDiv.className = "response";
+
+    userAnswerDiv.innerHTML = `<p>Q: ${response.question}</p>
+                              <p>A: ${response.selectedAnswer}</p>`;
+    wrongAnswersDiv.append(userAnswerDiv);
+  });
+
+  questionsContainer.append(correctAnswersDiv);
+  questionsContainer.append(wrongAnswersDiv);
+}
+
+let disableCheckboxes = () => {
+  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+  checkboxes.forEach(checkbox => {
+    checkbox.disabled = true;
+  });
 }
