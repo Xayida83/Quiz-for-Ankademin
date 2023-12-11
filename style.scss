@@ -16,6 +16,9 @@ body {
     background-color: $darkBackgroundColor;
     color: $darkTextColor;
   }
+  h1 {
+    margin-bottom: 2em;
+  }
   .quizContainer {  
    @include flex(column, center, center); 
    width: 100vw;
@@ -28,17 +31,13 @@ body {
     width: 80%;
       @media #{$desktop}{
         width: 30%;
-        // &.hide {
-        //    display: block;
-        // }
-       
       }
     } 
     .questionsContainer{
       width: 80%;
       @include flex(column, center, center);
       @media #{$desktop} {
-        width: 25%;
+        width: 400px;
       }
       .questionCard{
         @include flex(row, center, center);
@@ -51,7 +50,7 @@ body {
           border: 1px solid #673AB7 ;
           padding: 5px;      
           text-align: center;
-
+         
           input[type="checkbox"] {
             display: none;
           }
@@ -78,10 +77,13 @@ body {
       }
       .response {
         margin: 12px 0;
-        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 5px 5px $shadow;
         p {
           margin: 5px;
           font-size: 15px;
+        }
+        &.dark {
+          box-shadow: 0px 5px 5px $darkModeShadow;
         }
       }
     }
@@ -101,4 +103,3 @@ body {
   }
 }
 
-//*TODO: styla classerna correct och wrong

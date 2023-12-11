@@ -88,7 +88,6 @@ let questions =[
  
 */
 
-
 let userCorrectResponses = [];
 let userWrongResponses = [];
 
@@ -99,14 +98,19 @@ let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
+// const response = document.querySelectorAll(".response");
 //If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
   body.classList.toggle('dark-mode'); 
+  // response.forEach(div => {
+  //   div.style.boxShadow = "0px 0px 5px white";
+  // });
 });
 
 //Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   questionsContainer.innerHTML = "";
+  
   currentQuestionIndex++;
   
  //If and else to see when questions are over
@@ -135,7 +139,7 @@ let displayQuestion = (index) => {
     option.name = "answers";
     option.id = answer.text;
 
-    // Lägg till en "change" eventlistener för varje checkbox och spara svaret
+    // Add a "change" event listener for each checkbox and save the response
     option.addEventListener("change", () => {
         let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
         checkedBox.forEach(checkbox => {
@@ -155,6 +159,7 @@ let displayQuestion = (index) => {
 
   questionsContainer.appendChild(card);
 }
+/** * TODO:lägg till en startknapp och sätt första frågan på rätt plats */
 displayQuestion(currentQuestionIndex);
 
 // Check question. If right - this happens. else - other things happens
@@ -253,3 +258,5 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
+
+/** *TODO: When user hasnt answerd a question, get an alert */
