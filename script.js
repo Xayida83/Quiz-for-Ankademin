@@ -93,11 +93,15 @@ let userWrongResponses = [];
 
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
-
+let picture = document.querySelector(".friendsPic");
 let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
+
+const getCheckedCheckboxes = (container) => {
+  return container.querySelectorAll("input[type='checkbox']:checked");
+};
 
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
@@ -114,10 +118,11 @@ startButton.addEventListener("click", () => {
 
 // * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
-  let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
+  let checkedBoxes = getCheckedCheckboxes(questionsContainer);
+  // let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
   
   if (checkedBoxes.length === 0) {
-    // Om inga rutor är markerade, visa en alert och avbryt
+    // *If no boxes are checked, display an alert 
     alert("You must answer the question before proceeding.");
     return;
   }
@@ -153,8 +158,9 @@ let displayQuestion = (index) => {
 
     // * Add a "change" event listener for each checkbox and save the response
     option.addEventListener("change", () => {
-        let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
-        checkedBox.forEach(checkbox => {
+      let checkBox = getCheckedCheckboxes(card);
+        // let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
+        checkBox.forEach(checkbox => {
         let answerText = checkbox.value;
         updateAnswerClass(currentQuestionIndex, answerText);
       });
@@ -199,12 +205,11 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
   };
 };
 
-let maxScores = 19;
-// TODO ta bort skapandet av onödig divar
+let maxScores = 22;
 //  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
-  let picture = document.querySelector(".friendsPic");
+  
   picture.classList.add("hide");
 
   let percentageCorrect = Math.floor((userCorrectResponses.length / maxScores) * 100);
@@ -233,6 +238,7 @@ let showResult = () => {
                         <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}% - ${resultText}</p>`;
 
   questionsContainer.append(resultDiv);
+  restartBtn.classList.remove("hide");
 };
 
 let showTheAnswers = () => {
@@ -268,3 +274,19 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
+const restartBtn = document.querySelector(".restartBtn");
+
+restartBtn.addEventListener("click", () => {
+  // * Reset variables and UI state
+  currentQuestionIndex = 0;
+  userCorrectResponses = [];
+  userWrongResponses = [];
+  questionsContainer.innerHTML = "";
+  nextQuestionBtn.classList.remove("hide");
+  restartBtn.classList.add("hide");
+  picture.classList.remove("hide");
+
+  // * Start the quiz again
+  displayQuestion(currentQuestionIndex);
+});
+// TODO Man ska inte kunna klicka ur en låda som redan blivit checkad
