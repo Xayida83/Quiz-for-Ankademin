@@ -75,9 +75,12 @@ body {
       .userResult {
         @include flex(column, center, center);
         gap: 0;
+        h2 {
+          font-size: 30px;
+        }
         p {
           margin: 0;
-          font-size: 17px;
+          font-size: 20px;
         }
       }
       .response {
@@ -91,9 +94,7 @@ body {
           box-shadow: 0px 5px 5px $darkModeShadow;
         }
       }
-    }
-
-    
+    }    
     .nextBtn {
       @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
     }

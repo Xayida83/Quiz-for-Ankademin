@@ -93,7 +93,7 @@ let userWrongResponses = [];
 
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
-
+let picture = document.querySelector(".friendsPic");
 let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
@@ -209,7 +209,7 @@ let maxScores = 22;
 //  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
-  let picture = document.querySelector(".friendsPic");
+  
   picture.classList.add("hide");
 
   let percentageCorrect = Math.floor((userCorrectResponses.length / maxScores) * 100);
@@ -238,6 +238,7 @@ let showResult = () => {
                         <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}% - ${resultText}</p>`;
 
   questionsContainer.append(resultDiv);
+  restartBtn.classList.remove("hide");
 };
 
 let showTheAnswers = () => {
@@ -273,3 +274,19 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
+const restartBtn = document.querySelector(".restartBtn");
+
+restartBtn.addEventListener("click", () => {
+  // * Reset variables and UI state
+  currentQuestionIndex = 0;
+  userCorrectResponses = [];
+  userWrongResponses = [];
+  questionsContainer.innerHTML = "";
+  nextQuestionBtn.classList.remove("hide");
+  restartBtn.classList.add("hide");
+  picture.classList.remove("hide");
+
+  // * Start the quiz again
+  displayQuestion(currentQuestionIndex);
+});
+// TODO Man ska inte kunna klicka ur en låda som redan blivit checkad
