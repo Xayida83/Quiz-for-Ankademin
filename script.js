@@ -107,17 +107,17 @@ toggleModeBtn.addEventListener("click", () => {
   // });
 });
 
-//Count the questions and show one at a time
+// * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   questionsContainer.innerHTML = "";
   
   currentQuestionIndex++;
   
- //If and else to see when questions are over
+ // * If and else to see when questions are over
   currentQuestionIndex < questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers(), nextQuestionBtn.classList.add("hide"));
 });
 
-//To show the questions and it´s answer options.
+// * To show the questions and it´s answer options.
 let displayQuestion = (index) => {
   
   let card = document.createElement("div");
@@ -139,7 +139,7 @@ let displayQuestion = (index) => {
     option.name = "answers";
     option.id = answer.text;
 
-    // Add a "change" event listener for each checkbox and save the response
+    // * Add a "change" event listener for each checkbox and save the response
     option.addEventListener("change", () => {
         let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
         checkedBox.forEach(checkbox => {
@@ -159,10 +159,10 @@ let displayQuestion = (index) => {
 
   questionsContainer.appendChild(card);
 }
-/** * TODO:lägg till en startknapp och sätt första frågan på rätt plats */
+// TODO: lägg till en startknapp och sätt första frågan på rätt plats 
 displayQuestion(currentQuestionIndex);
 
-// Check question. If right - this happens. else - other things happens
+// * Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
   //Get current question from array 'questions'
   let currentQuestion = questions[questionIndex];
@@ -190,8 +190,8 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
 };
 
 let maxScores = 19;
-
-//A div to display the result
+// TODO ta bort skapandet av onödig divar
+//  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
   let picture = document.querySelector(".friendsPic");
@@ -259,4 +259,4 @@ let disableCheckboxes = () => {
   });
 }
 
-/** *TODO: When user hasnt answerd a question, get an alert */
+//TODO When user hasnt answerd a question, get an alert */
