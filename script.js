@@ -99,6 +99,10 @@ let currentQuestionIndex = 0;
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
 
+const getCheckedCheckboxes = (container) => {
+  return container.querySelectorAll("input[type='checkbox']:checked");
+};
+
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
   body.classList.toggle('dark-mode');
@@ -114,10 +118,11 @@ startButton.addEventListener("click", () => {
 
 // * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
-  let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
+  let checkedBoxes = getCheckedCheckboxes(questionsContainer);
+  // let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
   
   if (checkedBoxes.length === 0) {
-    // Om inga rutor är markerade, visa en alert och avbryt
+    // *If no boxes are checked, display an alert 
     alert("You must answer the question before proceeding.");
     return;
   }
@@ -153,8 +158,9 @@ let displayQuestion = (index) => {
 
     // * Add a "change" event listener for each checkbox and save the response
     option.addEventListener("change", () => {
-        let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
-        checkedBox.forEach(checkbox => {
+      let checkBox = getCheckedCheckboxes(card);
+        // let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
+        checkBox.forEach(checkbox => {
         let answerText = checkbox.value;
         updateAnswerClass(currentQuestionIndex, answerText);
       });
@@ -199,8 +205,7 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
   };
 };
 
-let maxScores = 19;
-// TODO ta bort skapandet av onödig divar
+let maxScores = 22;
 //  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
