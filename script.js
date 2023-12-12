@@ -158,6 +158,10 @@ let displayQuestion = (index) => {
 
     // * Add a "change" event listener for each checkbox and save the response
     option.addEventListener("change", () => {
+      if(option.checked) {
+        option.disabled = true;
+      }
+
       let checkBox = getCheckedCheckboxes(card);
         // let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
         checkBox.forEach(checkbox => {
@@ -289,4 +293,5 @@ restartBtn.addEventListener("click", () => {
   // * Start the quiz again
   displayQuestion(currentQuestionIndex);
 });
-// TODO Man ska inte kunna klicka ur en låda som redan blivit checkad
+
+// TODO Få minus poäng om man klickar i fel svar? 
