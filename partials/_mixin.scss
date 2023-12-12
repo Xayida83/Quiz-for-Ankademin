@@ -7,6 +7,7 @@
 }
 @mixin button($background, $text, $shadow, $hover) {
   padding: 10px 20px;
+  margin: 10px;
   border: none;
   background-color: $background;
   color: $text;

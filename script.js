@@ -98,17 +98,30 @@ let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
 const body = document.body;
-// const response = document.querySelectorAll(".response");
-//If the class does not exist add dark-mode.
+
+// *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
-  body.classList.toggle('dark-mode'); 
-  // response.forEach(div => {
-  //   div.style.boxShadow = "0px 0px 5px white";
-  // });
+  body.classList.toggle('dark-mode');
 });
+// * Start the quiz
+let startButton = document.querySelector(".start");
+startButton.addEventListener("click", () => {
+  startButton.remove();
+  nextQuestionBtn.classList.remove("hide");
+  displayQuestion(currentQuestionIndex);
+});
+
 
 // * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
+  let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
+  
+  if (checkedBoxes.length === 0) {
+    // Om inga rutor är markerade, visa en alert och avbryt
+    alert("You must answer the question before proceeding.");
+    return;
+  }
+
   questionsContainer.innerHTML = "";
   
   currentQuestionIndex++;
@@ -118,8 +131,7 @@ nextQuestionBtn.addEventListener("click", () => {
 });
 
 // * To show the questions and it´s answer options.
-let displayQuestion = (index) => {
-  
+let displayQuestion = (index) => {  
   let card = document.createElement("div");
   card.className="questionCard";
 
@@ -152,15 +164,13 @@ let displayQuestion = (index) => {
     label.innerText = answer.text;
     label.setAttribute('for', answer.text);
 
-    options.appendChild(option);
-    options.appendChild(label);
-    card.appendChild(options);
+    options.append(option);
+    options.append(label);
+    card.append(options);
   });
 
-  questionsContainer.appendChild(card);
+  questionsContainer.append(card);
 }
-// TODO: lägg till en startknapp och sätt första frågan på rätt plats 
-displayQuestion(currentQuestionIndex);
 
 // * Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
@@ -258,5 +268,3 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
-
-//TODO When user hasnt answerd a question, get an alert */
