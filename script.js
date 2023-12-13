@@ -302,6 +302,3 @@ restartBtn.addEventListener("click", () => {
   // * Start the quiz again
   displayQuestion(currentQuestionIndex);
 });
-
-// TODO Få minus poäng om man klickar i fel svar? 
-// TODO Gör koden med öppen för andra quiz och lägg arrayen någon annanstans
