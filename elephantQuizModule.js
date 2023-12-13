@@ -71,12 +71,12 @@ const elephantQuiz = {
       ],
     },
     {
-      question: "Which continent are elephants not native to?",
+      question: "Which continent are elephants native to? \n(Choose 2 or 3)",
       answers: [
-        { text: "Asia", correct: false },
-        { text: "Africa", correct: false },
-        { text: "North America", correct: true },
-        { text: "Europe", correct: false },
+        { text: "Asia", correct: true },
+        { text: "Africa", correct: true },
+        { text: "North America", correct: false },
+        { text: "Europe", correct: true },
       ],
     },
     {

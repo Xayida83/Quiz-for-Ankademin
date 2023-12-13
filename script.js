@@ -1,9 +1,9 @@
-// import { default as currentQuiz} from './questionsModule.js';
-import { default as currentQuiz} from './elephantQuizModule.js';
+import { default as currentQuiz} from './questionsModule.js';
+// import { default as currentQuiz} from './elephantQuizModule.js';
 
+let maxScores = 22;
 let userCorrectResponses = [];
 let userWrongResponses = [];
-let maxScores = 22;
 let userScore = 0;
 let correctAnswerPoints = 1;
 let incorrectAnswerPoints = -1;
@@ -30,7 +30,16 @@ if (currentQuiz.image){
   picture.append(image);
 }
 
-
+// TODO Set max scores - diffrent in every quiz
+// * The user gets extra points for each correct answer in a multiple choice question. Correct true is 15 but the maximum score is 22
+// currentQuiz.questions.forEach((question) => {
+//   question.answers.forEach((answer) => {
+//     if (answer.correct) {
+//       maxScores += 1;
+//     }
+//   });
+// });
+console.log(maxScores);
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
   body.classList.toggle('dark-mode');
@@ -42,7 +51,6 @@ startButton.addEventListener("click", () => {
   nextQuestionBtn.classList.remove("hide");
   displayQuestion(currentQuestionIndex);
 });
-
 
 // * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
@@ -137,7 +145,6 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
   };
 };
 
-
 //  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
@@ -208,7 +215,6 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
-
 
 restartBtn.addEventListener("click", () => {
   // * Reset variables and UI state
