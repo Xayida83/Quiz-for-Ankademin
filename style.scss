@@ -32,11 +32,16 @@ body {
       margin: 5px 0;
       }
      
-    .friendsPic{
-    width: 80%;
-      @media #{$desktop}{
-        width: 30%;
+    .quizImage{
+      display: flex;
+      justify-content: center;
+      img {
+        width: 80%;
+          @media #{$desktop}{
+          width: 30%;
+        }
       }
+    
     } 
     .questionsContainer{
       width: 80%;

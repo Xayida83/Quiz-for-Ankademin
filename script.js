@@ -1,92 +1,5 @@
-let questions =[ 
-  {
-    question: "Does Ross Geller work as a chef?",
-    answers: [
-      {text: "No", correct: true},
-      {text: "Yes", correct: false}
-    ]
-  },
-  {
-    question: "Who is Monica's brother?",
-    answers: [
-      {text: "Joey", correct: false},
-      {text: "Chandler", correct: false},
-      {text: "Ross", correct: true},
-      {text: "Mike", correct: false}
-    ]
-  },
-  {
-    question: "Select the characters who have been married during the series. \n(Choose 2 or 3)",
-    answers: [
-      {text: "Ross Geller", correct: true},
-      {text: "Monica Geller", correct: true},
-      {text: "Rachel Green", correct: false},
-      {text: "Chandler Bing", correct: true}
-    ]
-  },
-  {
-    question: "Is Phoebe's alter ego called Regina Phalange?",
-    answers: [
-      {text: "No", correct: false},
-      {text: "Yes", correct: true}
-    ]
-  },
-  {
-    question: "What is Joey Tribbiani's catchphrase?",
-    answers: [
-      {text: "Oh my God!", correct: false},
-      {text: "Pivot!", correct: false},
-      {text: "How you doin'?", correct: true},
-      {text: "We were on a break!", correct: false}
-    ]
-  },
-  {
-    question: "Select the seasons in which Monica and Chandler are a couple. \n(Choose 2 or 3)",
-    answers: [
-      {text: "Season 4", correct: true},
-      {text: "Season 5", correct: true},
-      {text: "Season 6", correct: true},
-      {text: "Season 7", correct: false}
-    ]
-  },
-  {
-    question: "Does Chandler Bing work with statistics and analysis at a data assessment firm?",
-    answers: [
-      {text: "No", correct: true},
-      {text: "Yes", correct: false}
-    ]
-  },
-  {
-    question: "What is the name of Ross and Monica's dog when they were kids?",
-    answers: [
-      {text: "Rex", correct: false},
-      {text: "Rover", correct: false},
-      {text: "Chi-Chi", correct: true},
-      {text: "Fluffy", correct: false}
-    ]
-  },
-  {
-    question: "Does Ross Geller own an oversized Porsche costume?",
-    answers: [
-      {text: "No", correct: false},
-      {text: "Yes", correct: true}
-    ]
-  },
-  {
-    question: "Select the characters who have worked at Central Perk. \n(Choose 2 or 3)",
-    answers: [
-      {text: "Ross Geller", correct: false},
-      {text: "Pheobe Buffay", correct: false},
-      {text: "Rachel Green", correct: true},
-      {text: "Joey Tribbiani", correct: true}
-    ]
-  }
-];
-
-/** Svar på Chandler frågan
- *  Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
- 
-*/
+// import { default as currentQuiz} from './questionsModule.js';
+import { default as currentQuiz} from './elephantQuizModule.js';
 
 let userCorrectResponses = [];
 let userWrongResponses = [];
@@ -95,9 +8,11 @@ let userScore = 0;
 let correctAnswerPoints = 1;
 let incorrectAnswerPoints = -1;
 
+let header = document.querySelector(".header");
+let picture = document.querySelector(".quizImage");
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
-let picture = document.querySelector(".friendsPic");
+const restartBtn = document.querySelector(".restartBtn");
 let currentQuestionIndex = 0;
 
 const toggleModeBtn = document.querySelector("#toggleModeBtn");
@@ -106,6 +21,15 @@ const body = document.body;
 const getCheckedCheckboxes = (container) => {
   return container.querySelectorAll("input[type='checkbox']:checked");
 };
+
+header.innerText = currentQuiz.name;
+if (currentQuiz.image){
+  let image = document.createElement('img');
+  image.src = currentQuiz.image;
+  image.alt = "Picture of the subject of the quiz";
+  picture.append(image);
+}
+
 
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
@@ -123,7 +47,6 @@ startButton.addEventListener("click", () => {
 // * Count the questions and show one at a time
 nextQuestionBtn.addEventListener("click", () => {
   let checkedBoxes = getCheckedCheckboxes(questionsContainer);
-  // let checkedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
   
   if (checkedBoxes.length === 0) {
     // *If no boxes are checked, display an alert 
@@ -136,7 +59,7 @@ nextQuestionBtn.addEventListener("click", () => {
   currentQuestionIndex++;
   
  // * If and else to see when questions are over
-  currentQuestionIndex < questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers(), nextQuestionBtn.classList.add("hide"));
+  currentQuestionIndex < currentQuiz.questions.length ? displayQuestion(currentQuestionIndex) : (showResult(), showTheAnswers(), nextQuestionBtn.classList.add("hide"));
 });
 
 // * To show the questions and it´s answer options.
@@ -146,11 +69,11 @@ let displayQuestion = (index) => {
 
   let questionText = document.createElement("h2");
   questionText.className = "question";
-  questionText.innerText = `${questions[index].question}`;
+  questionText.innerText = `${currentQuiz.questions[index].question}`;
 
   card.append(questionText);
 
-  questions[index].answers.forEach(answer => {
+  currentQuiz.questions[index].answers.forEach(answer => {
     let options = document.createElement("div");
     options.className = "answersOption";
 
@@ -166,8 +89,7 @@ let displayQuestion = (index) => {
         option.disabled = true;
       }
 
-      let checkBox = getCheckedCheckboxes(card);
-        // let checkedBox = card.querySelectorAll("input[type='checkbox']:checked");     
+      let checkBox = getCheckedCheckboxes(card);    
         checkBox.forEach(checkbox => {
         let answerText = checkbox.value;
         updateAnswerClass(currentQuestionIndex, answerText);
@@ -189,7 +111,7 @@ let displayQuestion = (index) => {
 // * Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
   //Get current question from array 'questions'
-  let currentQuestion = questions[questionIndex];
+  let currentQuestion = currentQuiz.questions[questionIndex];
   //Use the find method to search for the selected answer in the current question's answer options
   let selectedAnswerObject = currentQuestion.answers.find(answer => answer.text === selectedAnswer);
 
@@ -286,7 +208,7 @@ let disableCheckboxes = () => {
     checkbox.disabled = true;
   });
 }
-const restartBtn = document.querySelector(".restartBtn");
+
 
 restartBtn.addEventListener("click", () => {
   // * Reset variables and UI state
