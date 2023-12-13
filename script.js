@@ -1,4 +1,5 @@
 import { default as currentQuiz} from './questionsModule.js';
+// * Second quiz
 // import { default as currentQuiz} from './elephantQuizModule.js';
 
 let maxScores = 22;
