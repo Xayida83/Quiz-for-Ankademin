@@ -43,3 +43,6 @@ The user should be able to see exactly which questions they answered correctly a
 Technical requirement: The code follows the "DRY" principle (Don't repeat yourself), avoiding major repetitions of code in the logic.
 
 Bonus: Try to enhance the quiz with CSS to make it look more user-friendly!
+
+//Learing modules from freeCodeCamp.org 
+https://www.youtube.com/watch?v=KeBxopnhizw

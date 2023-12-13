@@ -90,6 +90,10 @@ let questions =[
 
 let userCorrectResponses = [];
 let userWrongResponses = [];
+let maxScores = 22;
+let userScore = 0;
+let correctAnswerPoints = 1;
+let incorrectAnswerPoints = -1;
 
 let questionsContainer = document.querySelector(".questionsContainer");
 let nextQuestionBtn = document.querySelector(".nextBtn");
@@ -198,10 +202,12 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
           option.classList.add("correct");
           console.log("Correct");
           userCorrectResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
+          userScore += correctAnswerPoints;
         } else {
           option.classList.add("wrong");
           console.log("Incorrect");
           userWrongResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
+          userScore += incorrectAnswerPoints;
           disableCheckboxes();
         }
       } 
@@ -209,14 +215,14 @@ let updateAnswerClass = (questionIndex, selectedAnswer) => {
   };
 };
 
-let maxScores = 22;
+
 //  * A div to display the result
 let showResult = () => {
   questionsContainer.innerHTML = "";
   
   picture.classList.add("hide");
 
-  let percentageCorrect = Math.floor((userCorrectResponses.length / maxScores) * 100);
+  let percentageCorrect = Math.floor((userScore / maxScores) * 100);
 
   // Determine the result text and color based on the percentage
   let resultText = "";
@@ -239,7 +245,9 @@ let showResult = () => {
   resultDiv.innerHTML = `<h2 style="color: ${resultColor};">Your Result</h2>
                         <p>Correct Answers: ${userCorrectResponses.length}</p>
                         <p>Incorrect Answers: ${userWrongResponses.length}</p>
-                        <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}% - ${resultText}</p>`;
+                        <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}%</p>
+                        <p style="color: ${resultColor};"> - ${resultText}</p>
+                        <p>Score: ${userScore}</p>`;
 
   questionsContainer.append(resultDiv);
   restartBtn.classList.remove("hide");
@@ -289,9 +297,8 @@ restartBtn.addEventListener("click", () => {
   nextQuestionBtn.classList.remove("hide");
   restartBtn.classList.add("hide");
   picture.classList.remove("hide");
+  userScore = 0;
 
   // * Start the quiz again
   displayQuestion(currentQuestionIndex);
 });
-
-// TODO Få minus poäng om man klickar i fel svar? 
