@@ -1,6 +1,7 @@
 const friendsQuiz ={
 name: "Friends Quiz",
-image: "/Images/cartoonFriends.jpg",
+image: "/Images/friends_GeoffreyChandler.jpg",
+// image: "/Images/cartoonFriends.jpg",
   questions: [ 
     {
       question: "Does Ross Geller work as a chef?",
@@ -46,17 +47,17 @@ image: "/Images/cartoonFriends.jpg",
     {
       question: "Select the seasons in which Monica and Chandler are a couple. \n(Choose 2 or 3)",
       answers: [
-        {text: "Season 4", correct: true},
+        {text: "Season 4", correct: false},
         {text: "Season 5", correct: true},
         {text: "Season 6", correct: true},
-        {text: "Season 7", correct: false}
+        {text: "Season 7", correct: true}
       ]
     },
     {
       question: "Does Chandler Bing work with statistics and analysis at a data assessment firm?",
       answers: [
-        {text: "No", correct: true},
-        {text: "Yes", correct: false}
+        {text: "No", correct: false},
+        {text: "Yes", correct: true}
       ]
     },
     {
@@ -87,8 +88,6 @@ image: "/Images/cartoonFriends.jpg",
   ],
 };
 
-/** Svar på Chandler frågan
-  * Nej, svaret är False. Chandler Bing arbetar inte med statistik och analys vid en databedömningsfirma. Han har ett kontorsjobb inom datarobotteknik, och hans yrkesroll är ofta ett skämt inom serien.
-*/
+
 
 export default friendsQuiz;

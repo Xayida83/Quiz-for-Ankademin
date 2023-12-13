@@ -48,11 +48,6 @@ body .quizContainer .quizImage {
 body .quizContainer .quizImage img {
   width: 80%;
 }
-@media screen and (min-width: 750px) {
-  body .quizContainer .quizImage img {
-    width: 30%;
-  }
-}
 body .quizContainer .questionsContainer {
   width: 80%;
   display: flex;

@@ -37,9 +37,6 @@ body {
       justify-content: center;
       img {
         width: 80%;
-          @media #{$desktop}{
-          width: 30%;
-        }
       }
     
     } 
