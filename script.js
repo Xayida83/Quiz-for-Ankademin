@@ -1,6 +1,6 @@
-import { default as currentQuiz} from './questionsModule.js';
+//import { default as currentQuiz} from './questionsModule.js';
 // * Second quiz
-// import { default as currentQuiz} from './elephantQuizModule.js';
+ import { default as currentQuiz} from './elephantQuizModule.js';
 
 let maxScores = 22;
 let userCorrectResponses = [];
@@ -117,7 +117,7 @@ let displayQuestion = (index) => {
 
   questionsContainer.append(card);
 }
-
+// TODO Correct answer gives points several times in a multiple answer question
 // * Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
   //Get current question from array 'questions'
