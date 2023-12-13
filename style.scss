@@ -19,7 +19,7 @@ body {
   h1 {
     margin-bottom: 2em;
   }
-  // !default styling on buttons
+  // ! Default styling on buttons
   button {
     @include button($defaultButtonColor, $defaultButtonText, $defaultButtonShadow, $defaultButtonHover)
   }
