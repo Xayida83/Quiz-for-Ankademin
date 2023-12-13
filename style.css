@@ -3,19 +3,27 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
   margin: 0;
-  background: rgb(254, 231, 251);
-  background-repeat: no-repeat;
-  height: 100vh;
+  background: url("/Images/pinkClouds_madisonInouye.jpg");
+  background-size: cover;
   color: rgb(4, 9, 33);
   font-family: "Times New Roman", Times, serif;
 }
 body.dark-mode {
-  background-color: rgb(4, 26, 116);
-  color: rgb(232, 227, 227);
+  background: url("/Images/space_hristoFidanov.jpg");
+  background-size: cover;
+  color: #272123;
 }
-body h1 {
-  margin-bottom: 2em;
+body.dark-mode .response {
+  box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.7411764706);
+}
+body.dark-mode .response p {
+  color: white;
 }
 body button {
   padding: 10px 20px;
@@ -35,10 +43,19 @@ body .quizContainer {
   align-items: center;
   flex-direction: column;
   gap: 5px;
-  width: 100vw;
+  width: 86vw;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 4px 5px 9px rgba(255, 255, 255, 0.7);
+}
+@media screen and (min-width: 750px) {
+  body .quizContainer {
+    width: 38vw;
+  }
 }
 body .quizContainer h2 {
-  font-size: 20px;
+  font-size: 25px;
   margin: 5px 0;
 }
 body .quizContainer .quizImage {
@@ -49,7 +66,7 @@ body .quizContainer .quizImage img {
   width: 80%;
 }
 body .quizContainer .questionsContainer {
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +75,7 @@ body .quizContainer .questionsContainer {
 }
 @media screen and (min-width: 750px) {
   body .quizContainer .questionsContainer {
-    width: 400px;
+    width: 25em;
   }
 }
 body .quizContainer .questionsContainer .questionCard {
@@ -83,13 +100,14 @@ body .quizContainer .questionsContainer .questionCard .answersOption input[type=
 }
 body .quizContainer .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
+  font-weight: 700;
 }
 body .quizContainer .questionsContainer .questionCard .correct {
-  background-color: #08a308;
+  background-color: rgb(104, 167, 104);
   border: black solid 2px;
 }
 body .quizContainer .questionsContainer .questionCard .wrong {
-  background-color: #f32828;
+  background-color: rgb(209, 87, 87);
   border: black solid 2px;
 }
 body .quizContainer .questionsContainer .userResult {
@@ -115,9 +133,6 @@ body .quizContainer .questionsContainer .response p {
   margin: 5px;
   font-size: 15px;
 }
-body .quizContainer .questionsContainer .response.dark {
-  box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.7411764706);
-}
 body .quizContainer .nextBtn {
   padding: 10px 20px;
   margin: 10px;
@@ -134,7 +149,7 @@ body .quizContainer #toggleModeBtn {
   padding: 10px 20px;
   margin: 10px;
   border: none;
-  background-color: rgb(66, 13, 13);
+  background-color: rgb(241, 35, 110);
   color: rgb(232, 227, 227);
   box-shadow: 0px 0px 5px rgb(10, 0, 0);
   font-size: 20px;
@@ -143,7 +158,7 @@ body .quizContainer #toggleModeBtn {
   margin-bottom: 10px;
 }
 body .quizContainer #toggleModeBtn:hover {
-  background-color: rgb(165, 56, 56);
+  background-color: #f189af;
 }
 body .quizContainer .hide {
   display: none;

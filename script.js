@@ -31,7 +31,7 @@ if (currentQuiz.image){
   picture.append(image);
 }
 
-// TODO Set max scores - diffrent in every quiz
+// TODO Set max scores - might be diffrent in every quiz
 // * The user gets extra points for each correct answer in a multiple choice question. Correct true is 15 but the maximum score is 22
 // currentQuiz.questions.forEach((question) => {
 //   question.answers.forEach((answer) => {
@@ -41,6 +41,7 @@ if (currentQuiz.image){
 //   });
 // });
 console.log(maxScores);
+
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
   body.classList.toggle('dark-mode');
@@ -160,13 +161,13 @@ let showResult = () => {
 
   if (percentageCorrect < 50) {
     resultText = "Failed";
-    resultColor = "#f32828";
+    resultColor = "rgb(209 87 87)";
   } else if (percentageCorrect >= 50 && percentageCorrect <= 75) {
     resultText = "Good";
     resultColor = "#f1a00c";
   } else {
     resultText = "Well done!";
-    resultColor = "#08a308";
+    resultColor = "rgb(104 167 104)";
   }
 
   //The div to display the results

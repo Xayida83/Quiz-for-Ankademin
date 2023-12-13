@@ -1,12 +1,13 @@
 $fontFamily: 'Times New Roman', Times, serif;
 
 //default
-$backgroundColor: rgb(254 231 251);
+$background: url('/Images/pinkClouds_madisonInouye.jpg');
 $textColor: rgb(4, 9, 33);
 
 //darkmode
-$darkBackgroundColor: rgb(4, 26, 116);
-$darkTextColor: rgb(232, 227, 227);
+$darkBackground: url('/Images/space_hristoFidanov.jpg');
+$darkTextColor: #272123;;
+$darkTextShadow: 0.5px 1px #e3e9f8;
 
 //button colors
 $defaultButtonColor: #D81B60;
@@ -20,10 +21,13 @@ $nextButtonText: rgb(232, 227, 227);
 $nextButtonShadow: #3c0519;
 
 
-$modeButtonColor: rgb(66, 13, 13);
-$modeButtonHover: rgb(165, 56, 56);
+$modeButtonColor: rgb(241 35 110);
+$modeButtonHover: #f189af;
 $modeButtonText: rgb(232, 227, 227);
 $modeButtonShadow: rgb(10, 0, 0);
+
+$correctAnswerBackground: rgb(104 167 104);
+$wrongAnswerBackground: rgb(209 87 87);
 
 //paragraf shadow color
 $darkModeShadow: #ffffffbd;

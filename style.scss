@@ -6,29 +6,43 @@
 }
 
 body {
+  @include flex(column, center, center); 
   margin: 0;
-  background: $backgroundColor;
-  background-repeat: no-repeat;
-  height: 100vh;
+  background: $background;
+  background-size: cover;
   color: $textColor; 
   font-family: $fontFamily;
   &.dark-mode {
-    background-color: $darkBackgroundColor;
+    background: $darkBackground;
+    background-size: cover;
     color: $darkTextColor;
+    .response {
+      box-shadow: 0px 5px 5px $darkModeShadow;
+      p {
+      color: white;
+      }
+    }
+    
   }
-  h1 {
-    margin-bottom: 2em;
-  }
+
+
   // ! Default styling on buttons
   button {
     @include button($defaultButtonColor, $defaultButtonText, $defaultButtonShadow, $defaultButtonHover)
   }
 
   .quizContainer {  
-   @include flex(column, center, center); 
-   width: 100vw;
+    @include flex(column, center, center); 
+    width: 86vw;
+    background: rgb(255 255 255 / 50%);
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 4px 5px 9px rgba(255, 255, 255, 0.7);
+    @media #{$desktop} {
+      width: 38vw;
+    }
     h2 {
-      font-size: 20px;
+      font-size: 25px;
       margin: 5px 0;
       }
      
@@ -41,10 +55,10 @@ body {
     
     } 
     .questionsContainer{
-      width: 80%;
+      width: 100%;
       @include flex(column, center, center);
       @media #{$desktop} {
-        width: 400px;
+        width: 25em;
       }
       .questionCard{
         @include flex(row, center, center);
@@ -63,14 +77,15 @@ body {
           }
           label {
             font-size: 25px;
+            font-weight: 700;
           }
         }
         .correct{
-          background-color: #08a308;
+          background-color: $correctAnswerBackground;
           border: black solid 2px;
         }
         .wrong {
-          background-color: #f32828;
+          background-color: $wrongAnswerBackground;
           border: black solid 2px;
         }            
       }    
@@ -91,9 +106,6 @@ body {
         p {
           margin: 5px;
           font-size: 15px;
-        }
-        &.dark {
-          box-shadow: 0px 5px 5px $darkModeShadow;
         }
       }
     }    
