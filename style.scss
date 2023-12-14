@@ -16,6 +16,8 @@ body {
     background: $darkBackground;
     background-size: cover;
     color: $darkTextColor;
+    // TODO change color on boxshadow when dark-mode
+    // ! To low specificity
     .response {
       box-shadow: 0px 5px 5px $darkModeShadow;
       p {
