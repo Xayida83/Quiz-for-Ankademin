@@ -51,7 +51,7 @@ body .quizContainer {
 }
 @media screen and (min-width: 750px) {
   body .quizContainer {
-    width: 38vw;
+    width: 53vw;
   }
 }
 body .quizContainer h2 {

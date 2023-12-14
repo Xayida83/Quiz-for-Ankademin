@@ -2,6 +2,8 @@
 // * Second quiz
  import { default as currentQuiz} from './elephantQuizModule.js';
 
+ // TODO Write rules for the quiz  
+
 let maxScores = 22;
 let userCorrectResponses = [];
 let userWrongResponses = [];
@@ -33,6 +35,7 @@ if (currentQuiz.image){
 
 // TODO Set max scores - might be diffrent in every quiz
 // * The user gets extra points for each correct answer in a multiple choice question. Correct true is 15 but the maximum score is 22
+// * Set score on the question instead or count the point at next question button. 
 // currentQuiz.questions.forEach((question) => {
 //   question.answers.forEach((answer) => {
 //     if (answer.correct) {
