@@ -100,7 +100,6 @@ body .quizContainer .questionsContainer .questionCard .answersOption input[type=
 }
 body .quizContainer .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
-  font-weight: 700;
 }
 body .quizContainer .questionsContainer .questionCard .correct {
   background-color: rgb(104, 167, 104);

@@ -1,8 +1,9 @@
-//import { default as currentQuiz} from './questionsModule.js';
+import { default as currentQuiz} from './questionsModule.js';
 // * Second quiz
- import { default as currentQuiz} from './elephantQuizModule.js';
+ //import { default as currentQuiz} from './elephantQuizModule.js';
 
  // TODO Write rules for the quiz  
+ // TODO Be able to choose what quiz to play
 
 let maxScores = 22;
 let userCorrectResponses = [];
