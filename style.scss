@@ -26,7 +26,12 @@ body {
     }
     
   }
-
+  .rules {
+    width: 78%;
+    ul li {
+    font-size: 20px;
+    }
+  }
 
   // ! Default styling on buttons
   button {
@@ -79,7 +84,6 @@ body {
           }
           label {
             font-size: 25px;
-            font-weight: 700;
           }
         }
         .correct{

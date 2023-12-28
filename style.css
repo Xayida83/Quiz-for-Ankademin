@@ -25,11 +25,17 @@ body.dark-mode .response {
 body.dark-mode .response p {
   color: white;
 }
+body .rules {
+  width: 78%;
+}
+body .rules ul li {
+  font-size: 20px;
+}
 body button {
   padding: 10px 20px;
   margin: 10px;
-  border: none;
-  background-color: #D81B60;
+  border: solid 1px yellow;
+  background-color: #b51952;
   color: rgb(232, 227, 227);
   box-shadow: 0px 0px 5px #3c0519;
   font-size: 20px;
@@ -100,7 +106,6 @@ body .quizContainer .questionsContainer .questionCard .answersOption input[type=
 }
 body .quizContainer .questionsContainer .questionCard .answersOption label {
   font-size: 25px;
-  font-weight: 700;
 }
 body .quizContainer .questionsContainer .questionCard .correct {
   background-color: rgb(104, 167, 104);
@@ -136,8 +141,8 @@ body .quizContainer .questionsContainer .response p {
 body .quizContainer .nextBtn {
   padding: 10px 20px;
   margin: 10px;
-  border: none;
-  background-color: #D81B60;
+  border: solid 1px yellow;
+  background-color: #b51952;
   color: rgb(232, 227, 227);
   box-shadow: 0px 0px 5px #3c0519;
   font-size: 20px;
@@ -148,8 +153,8 @@ body .quizContainer .nextBtn:hover {
 body .quizContainer #toggleModeBtn {
   padding: 10px 20px;
   margin: 10px;
-  border: none;
-  background-color: rgb(241, 35, 110);
+  border: solid 1px yellow;
+  background-color: #b51952;
   color: rgb(232, 227, 227);
   box-shadow: 0px 0px 5px rgb(10, 0, 0);
   font-size: 20px;
