@@ -185,9 +185,9 @@ let showResult = () => {
                         <p>Incorrect Answers: ${userWrongResponses.length}</p>
                         <p style="color: ${resultColor};">Percentage Correct: ${percentageCorrect}%</p>
                         <p style="color: ${resultColor};"> - ${resultText}</p>
-                        <p>Score: ${userScore}</p>`;
+                        <p>Score: ${userScore} of max ${maxScores}</p>`;
 
-  questionsContainer.append(resultDiv);
+  questionsContainer.append(resultDiv); 
   restartBtn.classList.remove("hide");
 };
 
