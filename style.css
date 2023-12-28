@@ -22,9 +22,6 @@ body.dark-mode {
 body.dark-mode .response {
   box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.7411764706);
 }
-body.dark-mode .response p {
-  color: white;
-}
 body .rules {
   width: 78%;
 }
