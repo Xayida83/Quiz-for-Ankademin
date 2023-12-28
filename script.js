@@ -2,31 +2,30 @@ import { default as currentQuiz} from './questionsModule.js';
 // * Second quiz
  //import { default as currentQuiz} from './elephantQuizModule.js';
 
- // TODO Write rules for the quiz  
- // TODO Be able to choose what quiz to play
-
-let maxScores = 22;
+let maxScores = 0;
 let userCorrectResponses = [];
 let userWrongResponses = [];
 let userScore = 0;
 let correctAnswerPoints = 1;
 let incorrectAnswerPoints = -1;
 
-let header = document.querySelector(".header");
-let picture = document.querySelector(".quizImage");
 let questionsContainer = document.querySelector(".questionsContainer");
+let rulesContainer = document.querySelector(".rules");
 let nextQuestionBtn = document.querySelector(".nextBtn");
 const restartBtn = document.querySelector(".restartBtn");
 let currentQuestionIndex = 0;
 
-const toggleModeBtn = document.querySelector("#toggleModeBtn");
-const body = document.body;
+let toggleModeBtn = document.querySelector("#toggleModeBtn");
+let body = document.body;
 
 const getCheckedCheckboxes = (container) => {
   return container.querySelectorAll("input[type='checkbox']:checked");
 };
 
+let header = document.querySelector(".header");
 header.innerText = currentQuiz.name;
+
+let picture = document.querySelector(".quizImage");
 if (currentQuiz.image){
   let image = document.createElement('img');
   image.src = currentQuiz.image;
@@ -34,17 +33,14 @@ if (currentQuiz.image){
   picture.append(image);
 }
 
-// TODO Set max scores - might be diffrent in every quiz
-// * The user gets extra points for each correct answer in a multiple choice question. Correct true is 15 but the maximum score is 22
-// * Set score on the question instead or count the point at next question button. 
-// currentQuiz.questions.forEach((question) => {
-//   question.answers.forEach((answer) => {
-//     if (answer.correct) {
-//       maxScores += 1;
-//     }
-//   });
-// });
-console.log(maxScores);
+// * Set the maxScore. Count the true answers in the quiz and that is the highscore. 
+currentQuiz.questions.forEach((question) => {
+  question.answers.forEach((answer) => {
+    if (answer.correct) {
+      maxScores += 1;
+    }
+  });
+});
 
 // *If the class does not exist add dark-mode.
 toggleModeBtn.addEventListener("click", () => {
@@ -54,6 +50,7 @@ toggleModeBtn.addEventListener("click", () => {
 let startButton = document.querySelector(".start");
 startButton.addEventListener("click", () => {
   startButton.remove();
+  rulesContainer.classList.add("hide");
   nextQuestionBtn.classList.remove("hide");
   displayQuestion(currentQuestionIndex);
 });
@@ -121,35 +118,41 @@ let displayQuestion = (index) => {
 
   questionsContainer.append(card);
 }
-// TODO Correct answer gives points several times in a multiple answer question
+
 // * Check question. If right - this happens. else - other things happens
 let updateAnswerClass = (questionIndex, selectedAnswer) => {
-  //Get current question from array 'questions'
+  // Get current question from array 'questions'
   let currentQuestion = currentQuiz.questions[questionIndex];
-  //Use the find method to search for the selected answer in the current question's answer options
+  // Use the find method to search for the selected answer in the current question's answer options
   let selectedAnswerObject = currentQuestion.answers.find(answer => answer.text === selectedAnswer);
 
   if (selectedAnswerObject) {
     let optionsElements = document.querySelectorAll('.answersOption');
     
     optionsElements.forEach(option => {
-      if (option.querySelector('label').innerText === selectedAnswer) {
-        if (selectedAnswerObject.correct) {
+      let label = option.querySelector('label');
+      let answerText = label.innerText;
+
+      if (answerText === selectedAnswer) {
+        if (selectedAnswerObject.correct && !label.classList.contains("answered-correct")) {
+          label.classList.add("answered-correct");
           option.classList.add("correct");
           console.log("Correct");
           userCorrectResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
           userScore += correctAnswerPoints;
-        } else {
+        } else if (!selectedAnswerObject.correct && !label.classList.contains("answered-wrong")) {
+          label.classList.add("answered-wrong");
           option.classList.add("wrong");
           console.log("Incorrect");
           userWrongResponses.push({ question: currentQuestion.question, selectedAnswer: selectedAnswer });
           userScore += incorrectAnswerPoints;
           disableCheckboxes();
         }
-      } 
+      }
     });
-  };
+  }
 };
+
 
 //  * A div to display the result
 let showResult = () => {
@@ -192,13 +195,29 @@ let showTheAnswers = () => {
   let correctAnswersDiv = document.createElement('div');
   correctAnswersDiv.innerHTML = `<h2>Your correct answers</h2>`;
 
-  userCorrectResponses.forEach((response) => {
-    let userAnswerDiv = document.createElement('div');
-    userAnswerDiv.className = "response";
-    userAnswerDiv.innerHTML = `<p>Q: ${response.question}</p>
-                              <p>A: ${response.selectedAnswer}</p>`;
-    correctAnswersDiv.append(userAnswerDiv);
-  });
+  // * A dictionary where the keys are questions, and the values are arrays of selected answers. 
+  let questionResponses = {};
+
+userCorrectResponses.forEach((response) => {
+  const { question, selectedAnswer } = response;
+
+  if (!questionResponses[question]) {
+    questionResponses[question] = [];
+  }
+
+  questionResponses[question].push(selectedAnswer);
+});
+
+for (const question in questionResponses) {
+  let userAnswerDiv = document.createElement('div');
+  userAnswerDiv.className = "response";
+
+  let answers = questionResponses[question].join(', '); // Join multiple answers with commas
+
+  userAnswerDiv.innerHTML = "<p>Q: " + question + "</p><p>A: " + answers + "</p>";
+
+  correctAnswersDiv.append(userAnswerDiv);
+}
   let wrongAnswersDiv = document.createElement('div');
   wrongAnswersDiv.innerHTML = `<h2>Your wrong answers</h2>`;
 

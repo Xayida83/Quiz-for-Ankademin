@@ -19,14 +19,15 @@ body {
     // TODO change color on boxshadow when dark-mode
     // ! To low specificity
     .response {
-      box-shadow: 0px 5px 5px $darkModeShadow;
-      p {
-      color: white;
-      }
-    }
-    
+      box-shadow: 0px 5px 5px $darkModeShadow;      
+    }    
   }
-
+  .rules {
+    width: 78%;
+    ul li {
+    font-size: 20px;
+    }
+  }
 
   // ! Default styling on buttons
   button {

@@ -88,6 +88,15 @@ const elephantQuiz = {
         { text: "90-100 years", correct: false },
       ],
     },
+    {
+      question: "What is the elephants name in a famus Disney movie whit the same name?",
+      answers: [
+        { text: "Drago", correct: false },
+        { text: "Fargo", correct: false },
+        { text: "Dumbo", correct: true },
+        { text: "Tim", correct: false },
+      ],
+    }
   ],
 };
 export default elephantQuiz;
