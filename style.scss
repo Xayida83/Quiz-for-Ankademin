@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-body {
+body {  
   @include flex(column, center, center); 
   margin: 0;
   background: $background;
@@ -22,6 +22,21 @@ body {
       box-shadow: 0px 5px 5px $darkModeShadow;      
     }    
   }
+  #hide {
+    display: none;
+  }
+  #quizButtons {    
+    display: flex;
+    max-width: 100%;
+    
+    button {
+      @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
+      padding: 5px 10px;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }    
+  }
+ 
   .rules {
     width: 78%;
     ul li {
@@ -57,72 +72,72 @@ body {
       }
     
     } 
-    .questionsContainer{
-      width: 100%;
-      @include flex(column, center, center);
-      @media #{$desktop} {
-        width: 25em;
-      }
-      .questionCard{
-        @include flex(row, center, center);
-        flex-wrap: wrap;
-        .question {
-        text-align: center;
-        }
-        .answersOption{
-          width: 47%;
-          border: 1px solid #673AB7 ;
-          padding: 5px;      
-          text-align: center;
-         
-          input[type="checkbox"] {
-            display: none;
-          }
-          label {
-            font-size: 25px;
-          }
-        }
-        .correct{
-          background-color: $correctAnswerBackground;
-          border: black solid 2px;
-        }
-        .wrong {
-          background-color: $wrongAnswerBackground;
-          border: black solid 2px;
-        }            
-      }    
-      .userResult {
+      .questionsContainer{
+        width: 100%;
         @include flex(column, center, center);
-        gap: 0;
-        h2 {
-          font-size: 30px;
+        @media #{$desktop} {
+          width: 25em;
         }
-        p {
-          margin: 0;
-          font-size: 20px;
+        .questionCard{
+          @include flex(row, center, center);
+          flex-wrap: wrap;
+          .question {
+          text-align: center;
+          }
+          .answersOption{
+            width: 47%;
+            border: 1px solid #673AB7 ;
+            padding: 5px;      
+            text-align: center;
+          
+            input[type="checkbox"] {
+              display: none;
+            }
+            label {
+              font-size: 25px;
+            }
+          }
+          .correct{
+            background-color: $correctAnswerBackground;
+            border: black solid 2px;
+          }
+          .wrong {
+            background-color: $wrongAnswerBackground;
+            border: black solid 2px;
+          }            
+        }    
+        .userResult {
+          @include flex(column, center, center);
+          gap: 0;
+          h2 {
+            font-size: 30px;
+          }
+          p {
+            margin: 0;
+            font-size: 20px;
+          }
         }
-      }
-      .response {
-        margin: 12px 0;
-        box-shadow: 0px 5px 5px $shadow;
-        p {
-          margin: 5px;
+        .response {
+          margin: 12px 0;
+          box-shadow: 0px 5px 5px $shadow;
+          p {
+            margin: 5px;
+            font-size: 15px;
+          }
+        }
+      }    
+        .nextBtn {
+          @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
+        }
+        #toggleModeBtn {
+          @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
+          padding: 5px 10px;
           font-size: 15px;
+          margin-bottom: 10px;
         }
-      }
-    }    
-    .nextBtn {
-      @include button($nextButtonColor, $nextButtonText, $nextButtonShadow, $nextButtonHover);
-    }
-    #toggleModeBtn {
-      @include button($modeButtonColor, $modeButtonText, $modeButtonShadow, $modeButtonHover);
-      padding: 5px 10px;
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-    .hide{
-      display: none;
-    }
+        .hide{
+          display: none;
+        }
   }
 }
 
