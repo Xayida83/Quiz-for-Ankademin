@@ -1,7 +1,11 @@
 # Quiz-for-Ankademin
 
 The Friends TV Series Quiz for the final grade in the JavaScript 1 course.
+What I take away from this assignment:
 
+Grade:  VG
+
+The assignment:
 You have been tasked with creating a quiz application for Ankademin. Users should be able to answer questions and receive feedback on whether they answered them correctly or incorrectly. The application should function without major bugs. You can choose the questions for the quiz yourself.
 
 You should also have your project on Github and continuously push code throughout the project.
