@@ -1,7 +1,11 @@
 # Quiz-for-Ankademin
 
-The Friends TV Series Quiz for the final grade in the JavaScript 1 course.
-What I take away from this assignment:
+
+To conclude the Javascript 1 course, we were assigned the task of creating a quiz. Our objective was to demonstrate our ability to retrieve values from checkboxes. Key takeaways from this assignment include:
+
+- Simplify rather than complicate; opting for a questionnaire instead of a one-question-at-a-time quiz would have sufficed.
+- I am content with the modularity of the game; changing questions is easily achievable.
+- My next step is to enable users to choose from various subjects.
 
 Grade:  VG
 
